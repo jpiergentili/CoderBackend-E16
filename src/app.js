@@ -5,6 +5,7 @@ import viewsRouter from './routes/views.router.js'
 import cartsRouter from './routes/carts.router.js'
 import cartRouter from './routes/cart.router.js'
 import sessionRouter from './routes/session.router.js'
+import userRouter from './routes/user.router.js'
 import session from 'express-session'
 import MongoStore from 'connect-mongo' 
 import passport from 'passport'
@@ -41,6 +42,7 @@ app.use('/api/carts', cartsRouter);
 app.use('/products', viewsRouter);
 app.use('/carts', cartRouter);
 app.use('/sessions', sessionRouter)
+app.use('/api/users', userRouter)
 
 //aplicamos passport como middleware en el servidor
 initializePassport()
