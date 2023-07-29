@@ -71,4 +71,17 @@ router.get('/logout', (req, res) => {
     })
 })
 
+//configuro la ruta para conectar con la applicacion creada en github
+router.get('/github', passport.authenticate('github', {scope: ["user:email"]}), (req, res) => {
+    res.send({ error: 'failed' })
+})
+
+//ruta a donde llegará la respuesta de la aplicacion de github
+router.get('/githubcallback',
+    passport.authenticate('github', {failureRedirect: '/sessions/login'}), //si no se logra autenticar con github redirige a esa ruta
+    async(req, res) => {
+        req.session.user = req.user
+        res.redirect('/products')
+})
+
 export default router;
